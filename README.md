@@ -143,9 +143,7 @@ mesh.coordinates.dat.data[:, 1] -= 0.25
 # Create the computational environment
 comm = spyro.utils.mpi_init(model)
 
-element = spyro.domains.space.FE_method(
-    mesh, model["opts"]["method"], model["opts"]["degree"]
-)
+element = spyro.domains.space.FE_method(mesh, model["opts"]["method"], model["opts"]["degree"])
 V = FunctionSpace(mesh, element)
 
 # Manually create a simple two layer seismic velocity model `vp`.
@@ -170,9 +168,7 @@ wavelet = spyro.full_ricker_wavelet(dt=0.0005, tf=2.0, freq=8.0)
 
 # And now we simulate the shot using a 2nd order central time-stepping scheme
 # Note: simulation results are stored in the folder `~/results/` by default
-p_field, p_at_recv = spyro.solvers.forward(
-    model, mesh, comm, vp, sources, wavelet, receivers
-)
+p_field, p_at_recv = spyro.solvers.forward(model, mesh, comm, vp, sources, wavelet, receivers)
 
 # Visualize the shot record
 spyro.plots.plot_shots(model, comm, p_at_recv)
