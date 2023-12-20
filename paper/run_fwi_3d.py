@@ -51,7 +51,7 @@ model["opts"] = {
     "gamma": 1.0,  # regularization parameter
 }
 model["parallelism"] = {
-    "type": "automatic",
+    "type": "spatial",
 }
 model["mesh"] = {
     "Lz": 5.175,  # depth in km - always positive
