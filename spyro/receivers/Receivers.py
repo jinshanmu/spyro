@@ -68,7 +68,7 @@ class Receivers:
         Receivers: :class: 'Receiver' object
         """
 
-        if "Aut_Dif" in model:
+        if "aut_dif" in model:
             self.automatic_adjoint = True
         else:
             self.automatic_adjoint = False
@@ -80,12 +80,11 @@ class Receivers:
         self.degree = model["opts"]["degree"]
         self.receiver_locations = model["acquisition"]["receiver_locations"]
 
-        if self.dimension == 3 and model["aut_dif"]["status"]:
+        if self.dimension == 3 and "aut_dif" in model and model["aut_dif"]["status"]:
             self.column_x = model["acquisition"]["num_rec_x_columns"]
             self.column_y = model["acquisition"]["num_rec_y_columns"]
             self.column_z = model["acquisition"]["num_rec_z_columns"]
             self.num_receivers = self.column_x * self.column_y
-
         else:
             self.num_receivers = len(self.receiver_locations)
 
