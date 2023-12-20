@@ -24,7 +24,9 @@ model["opts"] = {
     "degree": 3,  # p order
     "dimension": 3,  # dimension
 }
-model["parallelism"] = {"type": "spatial"}  # automatic",
+model["parallelism"] = {
+    "type": "spatial"  # automatic or spatial
+}
 model["mesh"] = {
     "Lz": 5.175,  # depth in km - always positive
     "Lx": 7.50,  # width in km - always positive
@@ -74,8 +76,7 @@ wavelet = spyro.full_ricker_wavelet(
     freq=model["acquisition"]["frequency"],
 )
 t1 = time.time()
-p, p_r = spyro.solvers.forward(
-    model, mesh, comm, vp, sources, wavelet, receivers, output=False
-)
+p, p_r = spyro.solvers.forward(model, mesh, comm, vp, sources, wavelet, receivers, output=False)
 print(time.time() - t1, flush=True)
 spyro.plots.plot_shots(model, comm, p_r, vmin=-1e-3, vmax=1e-3)
+spyro.io.save_shots(model, comm, p_r)
