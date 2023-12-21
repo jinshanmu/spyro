@@ -10,6 +10,7 @@ import segyio
 
 from .. import domains
 
+import os
 
 def ensemble_save(func):
     """Decorator for read and write shots for ensemble parallelism
@@ -33,6 +34,8 @@ def ensemble_save(func):
         for snum in range(num):
             if is_owner(_comm, snum) and _comm.comm.rank == 0:
                 if custom_file_name is None:
+                    if not os.path.exists("shots/"):
+                        os.mkdir("shots/")
                     func(
                         *args,
                         **dict(
@@ -62,6 +65,8 @@ def ensemble_load(func):
         for snum in range(num):
             if is_owner(_comm, snum):
                 if custom_file_name is None:
+                    if not os.path.exists("shots/"):
+                        os.mkdir("shots/")
                     values = func(
                         *args,
                         **dict(
