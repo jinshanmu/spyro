@@ -36,7 +36,7 @@ def get_memory_usage():
 
 outdir = "fwi_3d_p3/"
 if not os.path.exists(outdir):
-  os.mkdir(outdir)
+    os.mkdir(outdir)
 if COMM_WORLD.rank == 0:
     mem = open(outdir + "mem.txt", "w")
     func = open(outdir + "func.txt", "w")
