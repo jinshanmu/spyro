@@ -253,8 +253,6 @@ def gradient(
             },
         )
 
-    assembly_callable = create_assembly_callable(rhs_, tensor=B)
-
     rhs_forcing = Function(V)  # forcing term
     if save_adjoint:
         adjoint = [Function(V, name="adjoint_pressure") for t in range(nt)]
@@ -262,8 +260,7 @@ def gradient(
         t = step * float(dt)
         rhs_forcing.assign(0.0)
         # Solver - main equation - (I)
-        # B = assemble(rhs_, tensor=B)
-        assembly_callable()
+        B = assemble(rhs_, tensor=B)
 
         f = receivers.apply_receivers_as_source(rhs_forcing, residual, step)
         # add forcing term to solve scalar pressure
