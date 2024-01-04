@@ -220,7 +220,7 @@ class Objective(ROL.Objective):
         if comm.comm.size > 1:
             dJ /= comm.comm.size
         # regularize the gradient if asked.
-        if model["opts"]["regularization"]:
+        if "regularization" in model["opts"] and model["opts"]["regularization"]:
             dJ = regularize_gradient(vp, dJ)
         # mask the water layer
         dJ.dat.data[water] = 0.0
