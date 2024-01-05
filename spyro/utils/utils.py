@@ -51,7 +51,7 @@ def compute_functional(model, residual, velocity=None):
         regularize = False
 
     if regularize:
-        gamma = model["opt"]["gamma"]
+        gamma = model["opts"]["gamma"]
         Ns = model["acquisition"]["num_sources"]
         gamma /= Ns
 
