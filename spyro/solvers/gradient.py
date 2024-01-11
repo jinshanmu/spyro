@@ -107,18 +107,18 @@ def gradient(
             u, pp = TrialFunctions(W)
             v, qq = TestFunctions(W)
 
-            u_np1, pp_np1 = Function(W).split()
-            u_n, pp_n = Function(W).split()
-            u_nm1, pp_nm1 = Function(W).split()
+            u_np1, pp_np1 = Function(W).subfunctions
+            u_n, pp_n = Function(W).subfunctions
+            u_nm1, pp_nm1 = Function(W).subfunctions
 
         elif dim == 3:
             W = V * V * Z
             u, psi, pp = TrialFunctions(W)
             v, phi, qq = TestFunctions(W)
 
-            u_np1, psi_np1, pp_np1 = Function(W).split()
-            u_n, psi_n, pp_n = Function(W).split()
-            u_nm1, psi_nm1, pp_nm1 = Function(W).split()
+            u_np1, psi_np1, pp_np1 = Function(W).subfunctions
+            u_n, psi_n, pp_n = Function(W).subfunctions
+            u_nm1, psi_nm1, pp_nm1 = Function(W).subfunctions
 
         if dim == 2:
             (sigma_x, sigma_z) = damping.functions(
