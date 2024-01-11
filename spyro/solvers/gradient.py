@@ -271,9 +271,9 @@ def gradient(
         solver.solve(X, B)
         if PML:
             if dim == 2:
-                u_np1, pp_np1 = X.split()
+                u_np1, pp_np1 = X.subfunctions
             elif dim == 3:
-                u_np1, psi_np1, pp_np1 = X.split()
+                u_np1, psi_np1, pp_np1 = X.subfunctions
 
                 psi_nm1.assign(psi_n)
                 psi_n.assign(psi_np1)
