@@ -128,7 +128,7 @@ model["timeaxis"] = {
 }
 
 
-# Create a simple mesh of a rectangle ∈ [1 x 2] km with ~100 m sized elements
+# Create a simple mesh of a rectangle ∈ [1 x 2] km with ~10 m sized elements
 # and then create a function space for P=1 Continuous Galerkin FEM
 mesh = RectangleMesh(100, 200, 1.0, 2.0)
 
