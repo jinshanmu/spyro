@@ -369,7 +369,7 @@ def interpolate(model, mesh, V, guess=False):
     m = V.ufl_domain()
     if model["BCs"]["status"]:
         minz = -model["mesh"]["Lz"] - model["BCs"]["lz"]
-        maxz = 0.0
+        maxz = 0.0 + model["BCs"]["lz"]
         minx = 0.0 - model["BCs"]["lx"]
         maxx = model["mesh"]["Lx"] + model["BCs"]["lx"]
         miny = 0.0 - model["BCs"]["ly"]
