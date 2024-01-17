@@ -486,7 +486,7 @@ class Receivers:
         if self.dimension == 2:
             num_rec = self.num_receivers
             δz = np.linspace(min(rec_pos[i][0] for i in range(len(rec_pos))), max(rec_pos[i][0] for i in range(len(rec_pos))), num_rec)
-            δx = np.linspace(min(rec_pos[i][1] for i in range(len(rec_pos))), min(rec_pos[i][1] for i in range(len(rec_pos))), num_rec)
+            δx = np.linspace(min(rec_pos[i][1] for i in range(len(rec_pos))), max(rec_pos[i][1] for i in range(len(rec_pos))), num_rec)
 
             Z, X = np.meshgrid(δz, δx)
             xs = np.vstack((Z.flatten(), X.flatten())).T
