@@ -76,7 +76,7 @@ class Sources(spyro.receivers.Receivers.Receivers):
         self.cell_tabulations = None
         self.cellNodeMaps = None
         self.nodes_per_cell = None
-        self.is_local = [1] * self.num_receivers
+        self.is_local = [0] * self.num_receivers
         self.current_source = range(self.num_receivers)
         self.quadrilateral = model["opts"]["quadrature"] == "GLL"
 
@@ -98,7 +98,7 @@ class Sources(spyro.receivers.Receivers.Receivers):
             The right hand side of the equation with the source applied
         """
         for source_id in range(self.num_receivers):
-            if self.is_local[source_id] and source_id in self.current_source:
+            if self.is_local[source_id] and source_id == self.current_source:
                 for i in range(len(self.cellNodeMaps[source_id])):
                     rhs_forcing.dat.data_with_halos[
                         int(self.cellNodeMaps[source_id][i])
