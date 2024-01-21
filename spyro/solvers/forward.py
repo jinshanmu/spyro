@@ -273,7 +273,8 @@ def forward(
             save_step += 1
 
         if step % nspool == 0:
-            #assert (norm(u_n) < 1), "Numerical instability. Try reducing dt or building the mesh differently"
+            print("norm(u_n): {:e}".format(norm(u_n)))
+            assert (norm(u_n) < 1), "Numerical instability. Try reducing dt or building the mesh differently"
             if output:
                 outfile.write(u_n, time=t, name="Pressure")
             if t > 0:
