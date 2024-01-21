@@ -432,7 +432,7 @@ def interpolate(model, mesh, V, guess=False):
 
     c = fire.Function(V)
     c.dat.data[:] = tmp
-    c = _check_units(c)
+    #c = _check_units(c)
     return c
 
 
