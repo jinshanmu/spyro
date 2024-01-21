@@ -227,8 +227,8 @@ def write_function_to_grid(function, V, grid_spacing):
     min_y = np.amin(y) + 0.01
     max_y = np.amax(y) - 0.01
 
-    #z = function.dat.data[:] * 1000.0  # convert from km/s to m/s
-    z = function.dat.data[:]
+    z = function.dat.data[:] * 1000.0  # convert from km/s to m/s
+    #z = function.dat.data[:]
     
     # target grid to interpolate to
     xi = np.arange(min_x, max_x, grid_spacing)
@@ -432,7 +432,7 @@ def interpolate(model, mesh, V, guess=False):
 
     c = fire.Function(V)
     c.dat.data[:] = tmp
-    #c = _check_units(c)
+    c = _check_units(c)
     return c
 
 
