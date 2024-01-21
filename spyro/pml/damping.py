@@ -108,7 +108,6 @@ def functions(
     #        0.0,
     #    )
     #)
-
     #sigma_z = Function(V, name="sigma_z").interpolate(aux1)
 
     sigma_max_z = bar_sigma  # Max damping
