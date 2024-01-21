@@ -114,14 +114,14 @@ def functions(
     sigma_max_z = bar_sigma  # Max damping
     aux1.interpolate(
         conditional(
-            And((z >= z1 - c_pml), z < z1),
+            And((z <= z1 + c_pml), z > z1),
             ((abs(z - z1) ** (ps)) / (c_pml ** (ps))) * sigma_max_z,
             0.0,
         )
     )
     aux2.interpolate(
         conditional(
-            And(z > z2, (z <= z2 + c_pml)),
+            And(z < z2, (z >= z2 - c_pml)),
             ((abs(z - z2) ** (ps)) / (c_pml ** (ps))) * sigma_max_z,
             0.0,
         )
