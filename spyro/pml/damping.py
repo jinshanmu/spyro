@@ -99,18 +99,35 @@ def functions(
     sigma_x = Function(V, name="sigma_x").interpolate(aux1 + aux2)
 
     # Sigma Z
-    tol_z = 1.000001
+    #tol_z = 1.000001
+    #sigma_max_z = bar_sigma  # Max damping
+    #aux1.interpolate(
+    #    conditional(
+    #        And(z < z2, (z >= z2 - tol_z * c_pml)),
+    #        ((abs(z - z2) ** (ps)) / (c_pml ** (ps))) * sigma_max_z,
+    #        0.0,
+    #    )
+    #)
+
+    #sigma_z = Function(V, name="sigma_z").interpolate(aux1)
+
     sigma_max_z = bar_sigma  # Max damping
     aux1.interpolate(
         conditional(
-            And(z < z2, (z >= z2 - tol_z * c_pml)),
+            And((z >= z1 - c_pml), z < z1),
+            ((abs(z - z1) ** (ps)) / (c_pml ** (ps))) * sigma_max_z,
+            0.0,
+        )
+    )
+    aux2.interpolate(
+        conditional(
+            And(z > z2, (z <= z2 + c_pml)),
             ((abs(z - z2) ** (ps)) / (c_pml ** (ps))) * sigma_max_z,
             0.0,
         )
     )
-
-    sigma_z = Function(V, name="sigma_z").interpolate(aux1)
-
+    sigma_z = Function(V, name="sigma_z").interpolate(aux1 + aux2)
+    
     # sgm_x = File("pmlField/sigma_x.pvd")  # , target_degree=1, target_continuity=H1
     # sgm_x.write(sigma_x)
     # sgm_z = File("pmlField/sigma_z.pvd")
