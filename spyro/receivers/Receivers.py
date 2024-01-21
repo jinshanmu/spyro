@@ -485,6 +485,8 @@ class Receivers:
         # 2D --
         if self.dimension == 2:
             num_rec = self.num_receivers
+            #δz = np.linspace(rec_pos[0, 0], rec_pos[num_rec - 1, 0], 1)
+            #δx = np.linspace(rec_pos[0, 1], rec_pos[num_rec - 1, 1], num_rec)
             δz = np.linspace(min(rec_pos[i][0] for i in range(len(rec_pos))), max(rec_pos[i][0] for i in range(len(rec_pos))), num_rec)
             δx = np.linspace(min(rec_pos[i][1] for i in range(len(rec_pos))), max(rec_pos[i][1] for i in range(len(rec_pos))), num_rec)
 
